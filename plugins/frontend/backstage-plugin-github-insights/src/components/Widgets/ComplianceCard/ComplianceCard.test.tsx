@@ -20,7 +20,7 @@ import { render } from '@testing-library/react';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
 import { ApiProvider, ApiRegistry } from '@backstage/core-app-api';
 import { rest } from 'msw';
-import { msw, wrapInTestApp } from '@backstage/test-utils';
+import { setupRequestMockHandlers, wrapInTestApp } from '@backstage/test-utils';
 import { setupServer } from 'msw/node';
 import {
   branchesResponseMock,
@@ -51,7 +51,7 @@ const apis = ApiRegistry.from([
 
 describe('ComplianceCard', () => {
   const worker = setupServer();
-  msw.setupDefaultHandlers(worker);
+  setupRequestMockHandlers(worker);
 
   beforeEach(() => {
     worker.use(

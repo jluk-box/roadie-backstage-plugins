@@ -27,6 +27,7 @@ import { useBuilds } from '../useBuilds';
 import { useProjectEntity } from '../useProjectEntity';
 import { BuildkiteStatus } from './components/BuildKiteRunStatus';
 import { BuildkiteBuildInfo, TableProps } from '../types';
+import { useRouteRef } from '@backstage/core-plugin-api';
 
 const getElapsedTime = (start: string) => {
   return moment(start).fromNow();
@@ -47,12 +48,13 @@ const generatedColumns: TableColumn[] = [
     field: 'message',
     highlight: true,
     render: (row: Partial<BuildkiteBuildInfo>) => {
+      const buildKiteBuildLink = useRouteRef(buildKiteBuildRouteRef);
       return (
         <p>
           {row.rebuilt_from?.id && 'retry of: '}
           <Link
             component={RouterLink}
-            to={generatePath(buildKiteBuildRouteRef.path, {
+            to={generatePath(buildKiteBuildLink(), {
               buildNumber: (row.number as number).toString(),
             })}
           >

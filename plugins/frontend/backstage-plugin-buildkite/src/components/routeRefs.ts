@@ -17,11 +17,9 @@
 import { createRouteRef } from '@backstage/core-plugin-api';
 
 export const buildKiteRouteRef = createRouteRef({
-  path: '',
-  title: 'Buildkite | All builds',
+  id: 'buildkite-all-builds',
 });
 
 export const buildKiteBuildRouteRef = createRouteRef({
-  path: ':buildNumber',
-  title: 'Buildkite | Build info',
+  id: 'buildkite-build-info',
 });

@@ -22,7 +22,7 @@ import {
 } from '@backstage/core-plugin-api';
 
 export const entityContentRouteRef = createRouteRef({
-  title: 'security-insights',
+  id: 'security-insights',
 });
 
 export const securityInsightsPlugin = createPlugin({

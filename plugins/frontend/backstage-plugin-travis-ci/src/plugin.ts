@@ -10,7 +10,7 @@ import {
 import { TravisCIApiClient, travisCIApiRef } from './api';
 
 export const entityContentRouteRef = createRouteRef({
-  title: 'travisCI',
+  id: 'travis-ci',
 });
 
 export const travisciPlugin = createPlugin({

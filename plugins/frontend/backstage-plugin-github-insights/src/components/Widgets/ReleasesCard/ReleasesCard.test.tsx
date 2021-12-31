@@ -20,7 +20,7 @@ import { render } from '@testing-library/react';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
 import { ApiProvider, ApiRegistry } from '@backstage/core-app-api';
 import { rest } from 'msw';
-import { msw, wrapInTestApp } from '@backstage/test-utils';
+import { setupRequestMockHandlers, wrapInTestApp } from '@backstage/test-utils';
 import { setupServer } from 'msw/node';
 import { entityMock, releasesResponseMock } from '../../../mocks/mocks';
 import { ThemeProvider } from '@material-ui/core';
@@ -47,7 +47,7 @@ const apis = ApiRegistry.from([
 
 describe('ReleasesCard', () => {
   const worker = setupServer();
-  msw.setupDefaultHandlers(worker);
+  setupRequestMockHandlers(worker);
 
   beforeEach(() => {
     worker.use(

@@ -25,7 +25,7 @@ import {
 import { githubPullRequestsApiRef, GithubPullRequestsClient } from './api';
 
 export const entityContentRouteRef = createRouteRef({
-  title: 'github-pull-requests',
+  id: 'github-pull-requests',
 });
 
 export const githubPullRequestsPlugin = createPlugin({

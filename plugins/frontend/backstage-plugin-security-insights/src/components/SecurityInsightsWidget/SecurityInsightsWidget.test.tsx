@@ -25,7 +25,7 @@ import {
   ApiProvider,
 } from '@backstage/core-app-api';
 import { rest } from 'msw';
-import { msw } from '@backstage/test-utils';
+import { setupRequestMockHandlers } from '@backstage/test-utils';
 // eslint-disable-next-line
 import { MemoryRouter } from 'react-router-dom';
 import { setupServer } from 'msw/node';
@@ -50,7 +50,7 @@ const apis = ApiRegistry.from([
 
 describe('Security Insights Card', () => {
   const worker = setupServer();
-  msw.setupDefaultHandlers(worker);
+  setupRequestMockHandlers(worker);
 
   beforeEach(() => {
     worker.use(

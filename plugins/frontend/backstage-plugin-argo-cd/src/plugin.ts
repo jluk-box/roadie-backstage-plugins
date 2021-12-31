@@ -11,7 +11,7 @@ import {
 import { ArgoCDApiClient, argoCDApiRef } from './api';
 
 export const entityContentRouteRef = createRouteRef({
-  title: 'ArgoCD Entity Content',
+  id: 'argocd-entity-content',
 });
 
 export const argocdPlugin = createPlugin({

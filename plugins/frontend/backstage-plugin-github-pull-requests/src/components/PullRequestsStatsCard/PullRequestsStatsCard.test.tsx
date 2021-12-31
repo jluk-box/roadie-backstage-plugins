@@ -25,7 +25,7 @@ import {
   ApiProvider
 } from '@backstage/core-app-api';
 import { rest } from 'msw';
-import { msw } from '@backstage/test-utils';
+import { setupRequestMockHandlers } from '@backstage/test-utils';
 import { setupServer } from 'msw/node';
 import { githubPullRequestsApiRef } from '../..';
 import { GithubPullRequestsClient } from '../../api';
@@ -51,7 +51,7 @@ const apis = ApiRegistry.from([
 
 describe('PullRequestsCard', () => {
   const worker = setupServer();
-  msw.setupDefaultHandlers(worker);
+  setupRequestMockHandlers(worker);
 
   beforeEach(() => {
     worker.use(

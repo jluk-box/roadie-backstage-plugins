@@ -36,7 +36,7 @@ const getSession = jest
   .mockResolvedValue({ providerInfo: { accessToken: 'access-token' } });
 
 const apis = ApiRegistry.from([
-  [githubAuthApiRef, new GithubAuth({ getSession } as any)],
+  [githubAuthApiRef, GithubAuth.create({ getSession } as any)],
   [
     scmIntegrationsApiRef,
     createScmIntegrationsApiMock(defaultIntegrationsConfig),

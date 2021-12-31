@@ -24,6 +24,7 @@ import BuildkiteBuildView from './BuildKiteBuildView';
 import { BUILDKITE_ANNOTATION } from '../consts';
 import { buildViewRouteRef } from '../plugin';
 import { useEntity } from "@backstage/plugin-catalog-react";
+import { useRouteRef } from '@backstage/core-plugin-api';
 
 export const isBuildkiteAvailable = (entity: Entity) =>
   Boolean(entity?.metadata.annotations?.[BUILDKITE_ANNOTATION]);
@@ -35,13 +36,14 @@ type Props = {
 
 export const Router = (_props: Props) => {
   const { entity } = useEntity();
+  const buildViewLink = useRouteRef(buildViewRouteRef);
   return !isBuildkiteAvailable(entity) ? (
       <MissingAnnotationEmptyState annotation={BUILDKITE_ANNOTATION} />
   ) : (
       <FlatRoutes>
         <Route path="/" element={<BuildkiteBuildsTable entity={entity} />} />
         <Route
-            path={`/${buildViewRouteRef.path}`}
+            path={`/${buildViewLink()}`}
             element={<BuildkiteBuildView entity={entity} />}
         />
       </FlatRoutes>

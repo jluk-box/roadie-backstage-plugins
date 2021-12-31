@@ -23,12 +23,11 @@ import {
 import { buildKiteApiRef, BuildkiteApi } from './api';
 
 export const entityContentRouteRef = createRouteRef({
-  title: 'Buildkite Entity Content',
+  id: 'buildkite-entity-content',
 });
 
 export const buildViewRouteRef = createRouteRef({
-  title: 'Buildkite Build view',
-  path: ':buildNumber',
+  id: 'buildkite-build-view',
 });
 
 export const buildkitePlugin = createPlugin({

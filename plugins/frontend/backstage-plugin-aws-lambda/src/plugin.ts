@@ -23,7 +23,7 @@ import {
 import { awsLambdaApiRef, AwsLambdaClient } from './api';
 
 export const entityContentRouteRef = createRouteRef({
-  title: 'AWS Lambda Entity Content',
+  id: 'aws-lambda-entity-content',
 });
 
 export const awsLambdaPlugin = createPlugin({

@@ -21,6 +21,7 @@ import { entityContentRouteRef } from '../plugin';
 import { GITHUB_REPO_ANNOTATION } from './useProjectName';
 import SecurityInsightsTab from './SecurityInsightsTab';
 import { useEntity } from "@backstage/plugin-catalog-react";
+import { useRouteRef } from '@backstage/core-plugin-api';
 
 export const isSecurityInsightsAvailable = (entity: Entity) =>
   Boolean(entity.metadata.annotations?.[GITHUB_REPO_ANNOTATION]);
@@ -32,12 +33,13 @@ type Props = {
 
 export const Router = (_props: Props) => {
   const { entity } = useEntity();
+  const entityContentLink = useRouteRef(entityContentRouteRef);
   return !isSecurityInsightsAvailable(entity) ? (
       <MissingAnnotationEmptyState annotation={GITHUB_REPO_ANNOTATION} />
   ) : (
       <Routes>
         <Route
-            path={`/${entityContentRouteRef.path}`}
+            path={`/${entityContentLink()}`}
             element={<SecurityInsightsTab entity={entity} />}
         />
       </Routes>

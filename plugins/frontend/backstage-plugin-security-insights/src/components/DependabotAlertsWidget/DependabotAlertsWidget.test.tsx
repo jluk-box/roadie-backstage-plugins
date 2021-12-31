@@ -22,7 +22,7 @@ import {
     dependabotAlertsResponseMock,
 } from '../../mocks/mocks';
 import { graphql } from 'msw';
-import { msw, wrapInTestApp } from '@backstage/test-utils';
+import { setupRequestMockHandlers, wrapInTestApp } from '@backstage/test-utils';
 import { setupServer } from 'msw/node';
 import { DependabotAlertsWidget } from './DependabotAlertsWidget';
 import {
@@ -89,7 +89,7 @@ const apisLowSeverity = ApiRegistry.from([
 
 describe('Dependabot alerts overview', () => {
     const worker = setupServer();
-    msw.setupDefaultHandlers(worker);
+    setupRequestMockHandlers(worker);
 
     beforeEach(() => {
         worker.resetHandlers();
